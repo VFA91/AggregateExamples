@@ -21,7 +21,7 @@
 
             var game = Game.Create(NAME).WithId(5);
             context.Games.Add(game);
-            await context.Save();
+            await context.Save(default);
 
             var gamesRepository = new GamesRepository(context);
 
@@ -69,7 +69,7 @@
             context.Games.Add(game);
             var venue = Venue.Create(5, "Venue");
             context.Venues.Add(venue);
-            await context.Save();
+            await context.Save(default);
 
             var gamesRepository = new GamesRepository(context);
 

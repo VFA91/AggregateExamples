@@ -38,7 +38,7 @@
 
             await _gamesRepository.Add(game, cancellationToken);
 
-            await _unitOfWork.Save();
+            await _unitOfWork.Save(default);
 
             return Unit.Value;
         }

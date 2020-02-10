@@ -15,15 +15,12 @@
 
     public sealed class DeleteGameHandler : IRequestHandler<DeleteGame>
     {
-        private readonly IGamesRepository _gamesRepository;
         private readonly IDeleteGame _deleteGame;
         private readonly IUnitOfWork _unitOfWork;
 
-        public DeleteGameHandler(IGamesRepository gamesRepository,
-            IDeleteGame deleteGame,
+        public DeleteGameHandler(IDeleteGame deleteGame,
             IUnitOfWork unitOfWork)
         {
-            _gamesRepository = gamesRepository ?? throw new ArgumentNullException(nameof(gamesRepository));
             _deleteGame = deleteGame ?? throw new ArgumentNullException(nameof(deleteGame));
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
@@ -39,7 +36,7 @@
         {
             await _deleteGame.Execute(request.Id, cancellationToken);
 
-            await _unitOfWork.Save();
+            await _unitOfWork.Save(default);
 
             return Unit.Value;
         }

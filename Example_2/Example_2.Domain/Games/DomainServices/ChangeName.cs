@@ -29,10 +29,5 @@
 
             game.SetName(name);
         }
-
-        private static void Check(Game game)
-        {
-            if (game is null) throw new ArgumentNullException(nameof(game));
-        }
     }
 }

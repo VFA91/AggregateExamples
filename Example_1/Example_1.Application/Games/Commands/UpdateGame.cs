@@ -44,7 +44,7 @@
 
             await _gamesRepository.EnsureUniqueness(game);
 
-            await _unitOfWork.Save();
+            await _unitOfWork.Save(default);
 
             return Unit.Value;
         }

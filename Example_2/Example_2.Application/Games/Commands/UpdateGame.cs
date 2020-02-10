@@ -16,15 +16,12 @@
 
     public sealed class UpdateGameHandler : IRequestHandler<UpdateGame>
     {
-        private readonly IGamesRepository _gamesRepository;
         private readonly IChangeName _changeName;
         private readonly IUnitOfWork _unitOfWork;
 
-        public UpdateGameHandler(IGamesRepository gamesRepository,
-            IChangeName changeName,
+        public UpdateGameHandler(IChangeName changeName,
             IUnitOfWork unitOfWork)
         {
-            _gamesRepository = gamesRepository ?? throw new ArgumentNullException(nameof(gamesRepository));
             _changeName = changeName ?? throw new ArgumentNullException(nameof(changeName));
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
@@ -40,7 +37,7 @@
         {
             await _changeName.Execute(request.Id, request.Name, cancellationToken);
 
-            await _unitOfWork.Save();
+            await _unitOfWork.Save(default);
 
             return Unit.Value;
         }

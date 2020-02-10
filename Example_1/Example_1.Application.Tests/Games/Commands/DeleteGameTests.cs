@@ -35,7 +35,6 @@
 
             await gamesRepository.ReceivedWithAnyArgs(1).Remove(default);
             await gamesRepository.ReceivedWithAnyArgs(1).EnsureIsNotInUse(default);
-            await unitOfWork.ReceivedWithAnyArgs(1).Save();
         }
 
         [Fact]

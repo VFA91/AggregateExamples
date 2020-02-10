@@ -1,7 +1,6 @@
 ﻿namespace Example_2.Application.Games.Commands
 {
     using Example_2.Domain.Games.DomainServices;
-    using Example_2.Domain.Repositories;
     using Kernel.Library.Shared;
     using MediatR;
     using System;
@@ -15,15 +14,12 @@
 
     public sealed class CreateGameHandler : IRequestHandler<CreateGame>
     {
-        private readonly IGamesRepository _gamesRepository;
         private readonly ICreateNewGame _createNewGame;
         private readonly IUnitOfWork _unitOfWork;
 
-        public CreateGameHandler(IGamesRepository gamesRepository,
-            ICreateNewGame createNewGame,
+        public CreateGameHandler(ICreateNewGame createNewGame,
             IUnitOfWork unitOfWork)
         {
-            _gamesRepository = gamesRepository ?? throw new ArgumentNullException(nameof(gamesRepository));
             _createNewGame = createNewGame ?? throw new ArgumentNullException(nameof(createNewGame));
             _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         }
@@ -39,7 +35,7 @@
         {
             await _createNewGame.Execute(request.Name, cancellationToken);
 
-            await _unitOfWork.Save();
+            await _unitOfWork.Save(default);
 
             return Unit.Value;
         }

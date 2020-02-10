@@ -24,7 +24,6 @@
 
             await gamesRepository.ReceivedWithAnyArgs(1).Add(default, default);
             await gamesRepository.ReceivedWithAnyArgs(1).EnsureUniqueness(default);
-            await unitOfWork.ReceivedWithAnyArgs(1).Save();
         }
     }
 }

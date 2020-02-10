@@ -4,6 +4,7 @@
     using Kernel.Library.Shared;
     using Microsoft.EntityFrameworkCore;
     using System;
+    using System.Threading;
     using System.Threading.Tasks;
 
     public class Example1DbContext : DbContext, IUnitOfWork
@@ -23,11 +24,11 @@
             modelBuilder.ApplyConfiguration(new Venues.Entities.EntityConfiguration());
         }
 
-        public async Task Save()
+        public async Task Save(CancellationToken cancellationToken)
         {
             try
             {
-                await SaveChangesAsync();
+                await SaveChangesAsync(cancellationToken);
             }
             catch (Exception e)
             {
