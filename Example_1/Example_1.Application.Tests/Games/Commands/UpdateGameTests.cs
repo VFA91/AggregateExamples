@@ -33,7 +33,7 @@
 
             game.Name.Should().Be("Name2");
             await gamesRepository.ReceivedWithAnyArgs(1).EnsureUniqueness(default);
-            await unitOfWork.ReceivedWithAnyArgs(1).Save();
+            await unitOfWork.ReceivedWithAnyArgs(1).Save(default);
         }
     }
 }

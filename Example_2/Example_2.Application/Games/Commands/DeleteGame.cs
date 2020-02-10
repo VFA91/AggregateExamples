@@ -1,7 +1,6 @@
 ﻿namespace Example_2.Application.Games.Commands
 {
     using Example_2.Domain.Games.DomainServices;
-    using Example_2.Domain.Repositories;
     using Kernel.Library.Shared;
     using MediatR;
     using System;
