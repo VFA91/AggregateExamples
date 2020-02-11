@@ -21,13 +21,13 @@
 
             if (game is null) throw new DomainException(Game.NOT_FOUND);
 
-            var specification = new Game.IsUniqueSpecification(game).SatisfiedBy();
+            game.SetName(name);
+
+            var specification = new Game.IsUniqueSpecification(game, name).SatisfiedBy();
 
             var anyGame = await _gamesRepository.AnyAsync(specification, cancellationToken);
 
             if (anyGame) throw new DomainException(Game.NAME_MUST_UNIQUE);
-
-            game.SetName(name);
         }
     }
 }

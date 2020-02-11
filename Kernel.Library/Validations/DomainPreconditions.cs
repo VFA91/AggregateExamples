@@ -69,12 +69,7 @@
         public static T NotNull<T>(T value, string parameterName)
             where T : class
         {
-            if (value is null)
-            {
-                throw new DomainException(DomainPreconditionMessages.GetNotNull(parameterName));
-            }
-
-            return value;
+            return value ?? throw new DomainException(DomainPreconditionMessages.GetNotNull(parameterName)); ;
         }
 
         public static T IsNull<T>(T value, string message)

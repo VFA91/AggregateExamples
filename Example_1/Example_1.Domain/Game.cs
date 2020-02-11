@@ -35,7 +35,7 @@
 
             public IsUniqueSpecification(Game game)
             {
-                _game = game;
+                _game = game ?? throw new ArgumentNullException(nameof(game));
             }
 
             public override Expression<Func<Game, bool>> SatisfiedBy()
@@ -50,7 +50,7 @@
 
             public IsInUseSpecification(Game game)
             {
-                _game = game;
+                _game = game ?? throw new ArgumentNullException(nameof(game));
             }
 
             public override Expression<Func<Venue, bool>> SatisfiedBy()

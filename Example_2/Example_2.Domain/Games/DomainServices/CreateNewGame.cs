@@ -18,7 +18,7 @@
         {
             var game = Game.Create(name);
 
-            var specification = new Game.IsUniqueSpecification(game).SatisfiedBy();
+            var specification = new Game.IsUniqueSpecification(game, name).SatisfiedBy();
 
             bool anyGame = await _gamesRepository.AnyAsync(specification, cancellationToken);
 

@@ -32,15 +32,17 @@
         public class IsUniqueSpecification : Specification<Game>
         {
             private readonly Game _game;
+            private readonly string _newName;
 
-            public IsUniqueSpecification(Game game)
+            public IsUniqueSpecification(Game game, string newName)
             {
-                _game = game;
+                _game = game ?? throw new ArgumentNullException(nameof(game));
+                _newName = newName ?? throw new ArgumentNullException(nameof(newName));
             }
 
             public override Expression<Func<Game, bool>> SatisfiedBy()
             {
-                return game => game.Name == _game.Name && game.Id != _game.Id;
+                return game => game.Name == _newName && game.Id != _game.Id;
             }
         }
 
@@ -50,7 +52,7 @@
 
             public IsInUseSpecification(Game game)
             {
-                _game = game;
+                _game = game ?? throw new ArgumentNullException(nameof(game));
             }
 
             public override Expression<Func<Venue, bool>> SatisfiedBy()

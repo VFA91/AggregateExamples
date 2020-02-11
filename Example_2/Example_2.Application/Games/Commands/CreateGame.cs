@@ -26,7 +26,7 @@
 
         public Task<Unit> Handle(CreateGame request, CancellationToken cancellationToken)
         {
-            if (request is null) throw new ArgumentNullException(nameof(request));
+            _ = request ?? throw new ArgumentNullException(nameof(request));
 
             return HandleAsync(request, cancellationToken);
         }

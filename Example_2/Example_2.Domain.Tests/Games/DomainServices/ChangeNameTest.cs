@@ -27,7 +27,7 @@
             gamesRepository.Find(ID, default).Returns(Task.FromResult(game));
             gamesRepository.AnyAsync(Arg.Any<Expression<Func<Game, bool>>>(), default).Returns(Task.FromResult(true));
 
-            Func<Task> action = async () => await changeName.Execute(ID, "Test", default);
+            Func<Task> action = async () => await changeName.Execute(ID, "Name2", default);
 
             action.Should().Throw<DomainException>().WithMessage(Game.NAME_MUST_UNIQUE);
         }

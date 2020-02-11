@@ -18,6 +18,8 @@
 
         public override async Task EnsureIsNotInUse(Game entity)
         {
+            _ = entity ?? throw new ArgumentNullException(nameof(entity));
+
             var specification = new Game.IsInUseSpecification(entity);
 
             var anyVenue = await _context.Set<Venue>().AnyAsync(specification.SatisfiedBy());
@@ -27,6 +29,8 @@
 
         public override async Task EnsureUniqueness(Game entity)
         {
+            _ = entity ?? throw new ArgumentNullException(nameof(entity));
+
             var specification = new Game.IsUniqueSpecification(entity);
 
             var existingGames = await _context.Set<Game>().AnyAsync(specification.SatisfiedBy());
