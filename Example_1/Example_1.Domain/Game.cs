@@ -43,20 +43,5 @@
                 return game => game.Name == _game.Name && game.Id != _game.Id;
             }
         }
-
-        public class IsInUseSpecification : Specification<Venue>
-        {
-            private readonly Game _game;
-
-            public IsInUseSpecification(Game game)
-            {
-                _game = game ?? throw new ArgumentNullException(nameof(game));
-            }
-
-            public override Expression<Func<Venue, bool>> SatisfiedBy()
-            {
-                return venue => venue.GameId == _game.Id;
-            }
-        }
     }
 }

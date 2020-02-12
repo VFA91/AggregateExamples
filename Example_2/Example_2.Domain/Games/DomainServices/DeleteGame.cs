@@ -24,7 +24,7 @@
 
             if (game is null) throw new DomainException(Game.NOT_FOUND);
 
-            var specification = new Game.IsInUseSpecification(game).SatisfiedBy();
+            var specification = new Venue.IsInUseSpecification(game.Id).SatisfiedBy();
 
             var venues = await _venuesRepository.AnyAsync(specification, cancellationToken);
 

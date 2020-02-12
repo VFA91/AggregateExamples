@@ -20,7 +20,7 @@
         {
             _ = entity ?? throw new ArgumentNullException(nameof(entity));
 
-            var specification = new Game.IsInUseSpecification(entity);
+            var specification = new Venue.IsInUseSpecification(entity.Id);
 
             var anyVenue = await _context.Set<Venue>().AnyAsync(specification.SatisfiedBy());
 
