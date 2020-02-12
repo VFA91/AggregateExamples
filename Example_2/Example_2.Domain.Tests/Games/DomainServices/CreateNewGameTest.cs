@@ -30,7 +30,7 @@
         }
 
         [Fact]
-        public async Task When_creating_a_game_with_a_name_valid_then_a_new_car_should_be_created()
+        public async Task When_creating_a_game_with_a_name_valid_then_a_new_game_should_be_created()
         {
             var gamesRepository = Substitute.For<IGamesRepository>();
 

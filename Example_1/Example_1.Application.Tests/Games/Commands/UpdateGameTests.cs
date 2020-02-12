@@ -23,9 +23,9 @@
             var game = Game.Create("Name").WithId(id);
             gamesRepository.Find(id, default).Returns(Task.FromResult(game));
 
-            var createGameHandler = new UpdateGameHandler(gamesRepository, unitOfWork);
+            var updateGameHandler = new UpdateGameHandler(gamesRepository, unitOfWork);
 
-            await createGameHandler.Handle(new UpdateGame
+            await updateGameHandler.Handle(new UpdateGame
             {
                 Id = id,
                 Name = "Name2"
